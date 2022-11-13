@@ -1,0 +1,21 @@
+    <div id="change_password">
+        <h4><?php $this->_('Sonicpanelreseller.tab_client_actions.change_password');?></h4>
+
+        <?php
+        $this->Form->create($this->base_uri . 'services/manage/' . $this->Html->ifSet($service_id) . '/tabClientActions/');
+        ?>
+        <div class="col-md-12">
+            <div class="form-group">
+                <?php
+                $this->Form->label($this->_('Sonicpanelreseller.tab_client_actions.radiopassword', true), 'radio_password');
+                $this->Form->fieldPassword('radiopassword', ['id' => 'radiopassword', 'class' => 'form-control', 'placeholder' => $this->_('Sonicpanelreseller.tab_client_actions.radiopassword', true)]);
+                ?>
+            </div>
+        </div>
+        <button class="btn btn-default pull-right">
+            <i class="fa fa-edit"></i> <?php $this->_('Sonicpanelreseller.submit');?>
+        </button>
+        <?php
+        $this->Form->end();
+        ?>
+    </div>

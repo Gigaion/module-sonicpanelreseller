@@ -1,0 +1,51 @@
+<table class="table">
+    <tr class="heading_row">
+        <td class="fixed_small center border_none"><span class="paymnt_arrow"></span></td>
+        <td class="border_left"><?php $this->_('Sonicpanelreseller.service_info.hostname');?></td>
+        <td><?php $this->_('Sonicpanelreseller.service_info.radiousername');?></td>
+        <td><?php $this->_('Sonicpanelreseller.service_info.radiopassword');?></td>
+        <td class="last"><?php $this->_('Sonicpanelreseller.service_info.options');?></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><?php $this->Html->_($module_row->meta->hostname);?></td>
+        <td><?php $this->Html->_($service_fields->radiousername);?></td>
+        <td><?php $this->Html->_($service_fields->radiopassword);?></td>
+        <td>
+            <?php
+            if (isset($module_row->meta->usessl) && $module_row->meta->usessl == 'false' && isset($module_row->meta->hostname) && $module_row->meta->hostname != '') {
+                $http = 'http://';
+                $port = '2086';
+				$this->Form->create($this->Html->safe($http . $this->Html->ifSet($module_row->meta->hostname) . ':' . $this->Html->ifSet($port) . '/'), ['target' => '_blank']);
+            }
+            elseif (isset($module_row->meta->usessl) && $module_row->meta->usessl == 'true' && isset($module_row->meta->hostname) && $module_row->meta->hostname != '') {
+                $http = 'https://';
+                $port = '2087';
+				$this->Form->create($this->Html->safe($http . $this->Html->ifSet($module_row->meta->hostname) . ':' . $this->Html->ifSet($port) . '/'), ['target' => '_blank']);
+            }
+			else {
+				$http = 'http://';
+                $port = '2086';
+				$this->Form->create($this->Html->safe($http . $this->Html->ifSet($module_row->meta->ipaddress) . ':' . $this->Html->ifSet($port) . '/'), ['target' => '_blank']);
+			}
+            
+            $this->Form->fieldHidden('user', $this->Html->ifSet($service_fields->radiousername));
+            $this->Form->fieldHidden('pass', $this->Html->ifSet($service_fields->radiopassword));
+            ?>
+            <a id="_login<?php $this->Html->_($service->id);?>"
+               href="#"><?php $this->_('Sonicpanelreseller.service_info.option_login');?></a>
+            <?php
+            $this->Form->end();
+            ?>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#_login<?php $this->Html->_($service->id);?>').click(function (e) {
+            e.preventDefault();
+
+            $(this).closest('form').submit();
+        });
+    });
+</script>

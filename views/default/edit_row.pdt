@@ -1,0 +1,72 @@
+        <?php
+        $this->Widget->clear();
+        $this->Widget->setLinkButtons([]);
+        $this->Widget->create($this->_('Sonicpanelreseller.edit_row.editserver', true));
+        ?>
+        <div class="inner">
+            <?php
+            $this->Form->create();
+            ?>
+            <div class="title_row first">
+                <h3><?php $this->_('Sonicpanelreseller.edit_row.basic_title');?></h3>
+            </div>
+            <div class="pad">
+                <ul>
+                    <li>
+                        <?php
+                        $this->Form->label($this->_('Sonicpanelreseller.row_meta.server_name', true), 'server_name');
+                        $this->Form->fieldText('server_name', $this->Html->ifSet($vars->server_name));
+                        ?>
+                    </li>
+                    <li>
+                        <?php
+                        $this->Form->label($this->_('Sonicpanelreseller.row_meta.ipaddress', true), 'ipaddress');
+                        $this->Form->fieldText('ipaddress', $this->Html->ifSet($vars->ipaddress));
+                        ?>
+                    </li>
+                    <li>
+                        <?php
+                        $this->Form->label($this->_('Sonicpanelreseller.row_meta.hostname', true), 'hostname');
+                        $this->Form->fieldText('hostname', $this->Html->ifSet($vars->hostname));
+                        ?>
+                    </li>
+                    <li>
+                        <?php
+                        $this->Form->label($this->_('Sonicpanelreseller.row_meta.adminusername', true), 'adminusername');
+                        $this->Form->fieldText('adminusername', $this->Html->ifSet($vars->adminusername));
+                        ?>
+                    </li>
+                    <li>
+                        <?php
+                        $this->Form->label($this->_('Sonicpanelreseller.row_meta.adminapikey', true), 'adminapikey');
+                        $this->Form->fieldText('adminapikey', $this->Html->ifSet($vars->adminapikey));
+                        ?>
+                    </li>
+					<li>
+                        <?php
+                        $this->Form->fieldCheckbox('usessl', 'true', $this->Html->ifSet($vars->usessl, 'true') == 'true', ['id' => 'usessl']);
+                        $this->Form->label($this->_('Sonicpanelreseller.row_meta.usessl', true), 'usessl', ['class' => 'inline']);
+                        ?>
+                    </li>
+					<?php
+					/*
+					<li>
+                        <?php
+                        $this->Form->fieldCheckbox('useproxy', 'true', $this->Html->ifSet($vars->useproxy, 'true') == 'true', ['id' => 'useproxy']);
+                        $this->Form->label($this->_('Sonicpanelreseller.row_meta.useproxy', true), 'useproxy', ['class' => 'inline']);
+                        ?>
+                    </li>
+					*/
+					?>
+                </ul>
+            </div>
+
+
+            <div class="button_row"><a class="btn btn-primary pull-right submit" href="#"><?php $this->_('Sonicpanelreseller.edit_row.add_btn');?></a></div>
+            <?php
+            $this->Form->end();
+            ?>
+        </div>
+        <?php
+        $this->Widget->end();
+        ?>

@@ -1,0 +1,79 @@
+<?php
+	if (isset($module_row->meta->usessl) && $module_row->meta->usessl == 'false' && isset($module_row->meta->hostname) && $module_row->meta->hostname != '') {
+		$http = 'http://';
+		$port = '2086';;
+	}
+	elseif (isset($module_row->meta->usessl) && $module_row->meta->usessl == 'true' && isset($module_row->meta->hostname) && $module_row->meta->hostname != '') {
+		$http = 'https://';
+		$port = '2087';
+	}
+	else {
+		$http = 'http://';
+		$port = '2086';
+	}
+?>
+<script>
+	$(function () {	
+		$('form').on('submit', function (e) {
+			e.preventDefault();
+			$.ajax({
+				type: 'post',
+				xhrFields: {
+					withCredentials: true
+				},
+				url: '<?php echo $http.$module_row->meta->hostname.':'.$port; ?>/inc/authsp.php',
+				data: $('form').serialize(),
+				success: function(data, textStatus, jqXHR) {
+					window.open('<?php echo $http.$module_row->meta->hostname.':'.$port; ?>')
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					window.open('<?php echo $http.$module_row->meta->hostname.':'.$port; ?>');
+				}
+			});
+		});
+	});
+</script>
+<h4><?php $this->_('Sonicpanelreseller.tab_stats');?></h4>
+<div class="table-responsive">
+	<table class="table table-curved table-striped">
+		<thead>
+			<tr>
+				<th style="width: 50%;"><?php $this->_('Sonicpanelreseller.tab_stats.info_heading.field');?></th>
+				<th><?php $this->_('Sonicpanelreseller.tab_stats.info_heading.value');?></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><?php $this->_('Sonicpanelreseller.tab_stats.info.radiousername');?></td>
+				<td><?php $this->Html->_($service_fields->radiousername);?></td>
+			</tr>
+			<tr>
+				<td><?php $this->_('Sonicpanelreseller.tab_stats.info.radiopassword');?></td>
+				<td><?php $this->Html->_($service_fields->radiopassword);?></td>
+			</tr>
+			<tr>
+				<td><?php $this->_('Sonicpanelreseller.tab_stats.info.hostname');?></td>
+				<td><?php $this->Html->_($module_row->meta->hostname);?></td>
+			</tr>
+			<tr>
+				<td><?php $this->_('Sonicpanelreseller.tab_stats.info.loginlink');?></td>
+				<td>
+					<a href="<?php echo $http.$module_row->meta->hostname.':'.$port; ?>" target="_blank">
+						<?php echo $http.$module_row->meta->hostname.':'.$port; ?>
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td><?php $this->_('Sonicpanelreseller.tab_stats.info.loginbutton');?></td>
+				<td>
+					<form action="<?php echo $http.$module_row->meta->hostname.':'.$port; ?>/inc/authsp.php" target="_blank" method="post">
+						<input id="api" type="hidden" name="api" value="1" />
+						<input id="username" type="hidden" name="username" value="<?php echo $service_fields->radiousername; ?>" />
+						<input id="password" type="hidden" name="password" value="<?php echo $service_fields->radiopassword; ?>" />
+						<input id="login" type="submit" value="SonicPanel Login" />
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

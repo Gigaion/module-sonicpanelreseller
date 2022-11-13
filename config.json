@@ -1,0 +1,36 @@
+{
+    "version": "1.0.6",
+    "name": "Sonicpanelreseller.name",
+    "description": "Sonicpanelreseller.description",
+    "authors": [
+        {
+            "name": "Gigaion LLC",
+            "url": "https://gigaion.com"
+        }
+    ],
+    "package": {},
+    "service": {},
+    "module": {
+        "row": "Sonicpanelreseller.module_row",
+        "rows": "Sonicpanelreseller.module_row_plural",
+        "row_key": "server_name",
+        "group": "Sonicpanelreseller.module_group"
+    },
+    "email_tags": {
+        "module": [
+			"adminusername",
+			"adminapikey",
+			"ipaddress",
+			"hostname",
+			"usessl",
+			"useproxy"
+		],
+        "package": [
+			"package"
+		],
+        "service": [
+            "radiousername",
+            "radiopassword"
+        ]
+    }
+}

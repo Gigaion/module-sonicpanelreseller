@@ -1,0 +1,27 @@
+    <div class="title_row first">
+        <h3><?php $this->_('Sonicpanelreseller.tab_stats');?></h3>
+    </div>
+    <div class="pad">
+        <table class="table">
+            <thead>
+                <tr class="heading_row">
+                    <td style="width: 50%;"><?php $this->_('Sonicpanelreseller.tab_stats.info_heading.field');?></td>
+                    <td class="last"><?php $this->_('Sonicpanelreseller.tab_stats.info_heading.value');?></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?php $this->_('Sonicpanelreseller.tab_stats.info.radiousername');?></td>
+                    <td><?php $this->Html->_($service_fields->radiousername);?></td>
+                </tr>
+                <tr>
+                    <td><?php $this->_('Sonicpanelreseller.tab_stats.info.radiopassword');?></td>
+                    <td><?php $this->Html->_($service_fields->radiopassword);?></td>
+                </tr>
+                <tr>
+                    <td><?php $this->_('Sonicpanelreseller.tab_stats.info.hostname');?></td>
+                    <td><?php $this->Html->_($module_row->hostname);?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
